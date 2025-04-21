@@ -180,16 +180,17 @@ function wireEvents(container, toggleBtn, cfg) {
     }
 
     const botMsg = Array.isArray(data) ? data[0].output : data.output;
-    // Suppress the generic fallback error-string when the real request succeeds
-    if (!botMsg || botMsg === "There was an error connecting to the server.") {
-      console.warn("Suppressing placeholder error message:", botMsg);
-      return;
+    // Only render the bot message if it’s a real response
+    if (botMsg && botMsg !== "There was an error connecting to the server.") {
+      const botBubble = document.createElement('div');
+      botBubble.className = 'chat-message bot';
+      botBubble.textContent = botMsg;
+      messages.appendChild(botBubble);
+      messages.scrollTop = messages.scrollHeight;
+    } else {
+      console.warn("Skipping initial bot bubble:", botMsg);
     }
-    const botBubble = document.createElement('div');
-    botBubble.className = 'chat-message bot';
-    botBubble.textContent = botMsg;
-    messages.appendChild(botBubble);
-    messages.scrollTop = messages.scrollHeight;
+    // Always send and display the follow-up prompt
     const followUp = cfg.prompts.followUpPrompt || 'Tell us more about your business or how we can help you';
     await sendChatMessage(sessionId, cfg.webhook.route, cfg.webhook.url, followUp);
     // display the follow-up prompt in the UI
