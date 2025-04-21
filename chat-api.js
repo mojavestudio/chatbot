@@ -4,7 +4,7 @@
  * Generates a new UUID for a chat session.
  * @returns {string} A new UUID.
  */
-function generateId() {
+export function generateId() {
   return crypto.randomUUID();
 }
 
@@ -15,7 +15,7 @@ function generateId() {
  * @param {string} url - The webhook URL.
  * @returns {Promise<any>} The parsed JSON response.
  */
-async function openConversation(sessionId, route, url) {
+export async function openConversation(sessionId, route, url) {
   const payload = [{
     action: "loadPreviousSession",
     sessionId,
@@ -38,7 +38,7 @@ async function openConversation(sessionId, route, url) {
  * @param {string} text - The user's message text.
  * @returns {Promise<any>} The parsed JSON response.
  */
-async function sendChatMessage(sessionId, route, url, text) {
+export async function sendChatMessage(sessionId, route, url, text) {
   const payload = {
     action: "sendMessage",
     sessionId,
