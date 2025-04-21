@@ -32,7 +32,7 @@ export async function openConversation(sessionId, route, url) {
     return response.json();
   } catch (err) {
     console.error('❌ openConversation failed:', err);
-    return { output: "There was an error connecting to the server." };
+    return;
   }
 }
 
@@ -63,7 +63,7 @@ export async function sendChatMessage(sessionId, route, url, text, userId = "") 
     return response.json();
   } catch (err) {
     console.error('❌ sendChatMessage failed:', err);
-    return { output: "There was an error connecting to the server." };
+    return;
   }
 }
 
