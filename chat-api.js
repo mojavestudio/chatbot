@@ -22,12 +22,18 @@ export async function openConversation(sessionId, route, url) {
     route,
     metadata: { userId: "" }
   }];
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  });
-  return response.json();
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if (!response.ok) throw new Error(`Server error: ${response.status}`);
+    return response.json();
+  } catch (err) {
+    console.error('❌ openConversation failed:', err);
+    return { output: "There was an error connecting to the server." };
+  }
 }
 
 /**
@@ -36,22 +42,29 @@ export async function openConversation(sessionId, route, url) {
  * @param {string} route - The webhook route.
  * @param {string} url - The webhook URL.
  * @param {string} text - The user's message text.
+ * @param {string} [userId=""] - Optional user ID.
  * @returns {Promise<any>} The parsed JSON response.
  */
-export async function sendChatMessage(sessionId, route, url, text) {
+export async function sendChatMessage(sessionId, route, url, text, userId = "") {
   const payload = {
     action: "sendMessage",
     sessionId,
     route,
     chatInput: text,
-    metadata: { userId: "" }
+    metadata: { userId }
   };
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  });
-  return response.json();
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if (!response.ok) throw new Error(`Server error: ${response.status}`);
+    return response.json();
+  } catch (err) {
+    console.error('❌ sendChatMessage failed:', err);
+    return { output: "There was an error connecting to the server." };
+  }
 }
 
 /**
@@ -62,3 +75,10 @@ export async function sendChatMessage(sessionId, route, url, text) {
 export function randomFromList(list) {
   return list[Math.floor(Math.random() * list.length)];
 }
+
+export const chatApi = {
+  generateId,
+  openConversation,
+  sendChatMessage,
+  randomFromList
+};

@@ -176,7 +176,7 @@ function wireEvents(container, toggleBtn, cfg) {
         };
         suggestionBox.appendChild(btn);
       });
-      messages.appendChild(suggestionBox);
+      chatArea.appendChild(suggestionBox);
     }
 
     const botMsg = Array.isArray(data) ? data[0].output : data.output;

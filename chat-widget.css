@@ -283,3 +283,30 @@
 .chat-widget .chat-toggle.no-bubble-style:hover {
     transform: none !important;
 }
+
+
+.chat-widget .suggested-replies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px 16px;
+    background: var(--chat--color-background);
+    border-top: 1px solid rgba(133, 79, 255, 0.1);
+    border-bottom: 1px solid rgba(133, 79, 255, 0.1);
+}
+
+.chat-widget .reply-suggestion {
+    background-color: rgba(133, 79, 255, 0.1);
+    border: none;
+    border-radius: 16px;
+    padding: 8px 12px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    color: var(--chat--color-font);
+    font-family: inherit;
+}
+
+.chat-widget .reply-suggestion:hover {
+    background-color: rgba(133, 79, 255, 0.2);
+}
