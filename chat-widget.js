@@ -179,7 +179,9 @@ function wireEvents(container, toggleBtn, cfg) {
       });
     }
 
-    const botMsg = Array.isArray(data) ? data[0].output : data.output;
+    const botMsg = Array.isArray(data)
+      ? (data[0] && data[0].output) || ''
+      : (data.output || '');
     // Only render the bot message if it’s a real response
     if (botMsg && botMsg !== "There was an error connecting to the server.") {
       const botBubble = document.createElement('div');
