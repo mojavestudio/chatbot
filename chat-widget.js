@@ -22,6 +22,10 @@ const defaultConfig = {
     position: 'right',
     backgroundColor: '#ffffff',
     fontColor: '#333333'
+  },
+  prompts: {
+    initialPrompts: [],
+    suggestedReplies: []
   }
 };
 
@@ -31,7 +35,8 @@ function loadConfig() {
   return {
     webhook:   { ...defaultConfig.webhook,   ...user.webhook },
     branding:  { ...defaultConfig.branding,  ...user.branding },
-    style:     { ...defaultConfig.style,     ...user.style }
+    style:     { ...defaultConfig.style,     ...user.style },
+    prompts:   { ...defaultConfig.prompts,   ...user.prompts }
   };
 }
 
@@ -99,14 +104,17 @@ function buildWidget(cfg) {
       <img src="${chatbotIconURL}" alt="Chat Icon"
            style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;" />
     `;
+    toggleBtn.removeAttribute('style');
+    toggleBtn.style.border = 'none';
     toggleBtn.style.background = 'none';
     toggleBtn.style.boxShadow = 'none';
     toggleBtn.style.padding = '0';
+    toggleBtn.style.margin = '0';
     toggleBtn.style.transition = 'none';
     toggleBtn.style.transform = 'none';
-    toggleBtn.style.scale = 'none';
-    toggleBtn.onmouseover = null;
-    toggleBtn.onmouseout = null;
+    toggleBtn.style.width = '60px';
+    toggleBtn.style.height = '60px';
+    toggleBtn.style.zIndex = '999';
   } else {
     toggleBtn.innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -145,6 +153,32 @@ function wireEvents(container, toggleBtn, cfg) {
     container.querySelector('.brand-header').style.display = 'none';
     container.querySelector('.new-conversation').style.display = 'none';
     chatArea.classList.add('active');
+
+    if (cfg.prompts.initialPrompts.length > 0) {
+      const initialText = cfg.prompts.initialPrompts[Math.floor(Math.random() * cfg.prompts.initialPrompts.length)];
+      const intro = document.createElement('div');
+      intro.className = 'chat-message bot';
+      intro.textContent = initialText;
+      messages.appendChild(intro);
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    if (cfg.prompts.suggestedReplies.length > 0) {
+      const suggestionBox = document.createElement('div');
+      suggestionBox.className = 'suggested-replies';
+      cfg.prompts.suggestedReplies.slice(0, 3).forEach(text => {
+        const btn = document.createElement('button');
+        btn.textContent = text;
+        btn.className = 'reply-suggestion';
+        btn.onclick = () => {
+          suggestionBox.remove();
+          dispatch(text);
+        };
+        suggestionBox.appendChild(btn);
+      });
+      messages.appendChild(suggestionBox);
+    }
+
     const botMsg = Array.isArray(data) ? data[0].output : data.output;
     const botBubble = document.createElement('div');
     botBubble.className = 'chat-message bot';

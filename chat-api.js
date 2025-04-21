@@ -53,3 +53,12 @@ export async function sendChatMessage(sessionId, route, url, text) {
   });
   return response.json();
 }
+
+/**
+ * Returns a random item from an array.
+ * @param {string[]} list - Array of strings.
+ * @returns {string} A randomly selected item.
+ */
+export function randomFromList(list) {
+  return list[Math.floor(Math.random() * list.length)];
+}
