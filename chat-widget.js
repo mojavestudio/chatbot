@@ -192,6 +192,12 @@ function wireEvents(container, toggleBtn, cfg) {
     messages.scrollTop = messages.scrollHeight;
     const followUp = cfg.prompts.followUpPrompt || 'Tell us more about your business or how we can help you';
     await sendChatMessage(sessionId, cfg.webhook.route, cfg.webhook.url, followUp);
+    // display the follow-up prompt in the UI
+    const followUpBubble = document.createElement('div');
+    followUpBubble.className = 'chat-message bot';
+    followUpBubble.textContent = followUp;
+    messages.appendChild(followUpBubble);
+    messages.scrollTop = messages.scrollHeight;
   });
 
   async function dispatch(text) {

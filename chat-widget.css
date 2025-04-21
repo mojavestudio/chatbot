@@ -190,7 +190,6 @@
     background: var(--chat--color-background);
     border-top: 1px solid rgba(133, 79, 255, 0.1);
     border-bottom: 1px solid rgba(133, 79, 255, 0.1);
-    border-bottom: none;
     position: relative;
     z-index: 1;
 }
