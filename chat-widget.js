@@ -25,7 +25,8 @@ const defaultConfig = {
   },
   prompts: {
     initialPrompts: [],
-    suggestedReplies: []
+    suggestedReplies: [],
+    followUpPrompt: ''
   }
 };
 
@@ -189,6 +190,8 @@ function wireEvents(container, toggleBtn, cfg) {
     botBubble.textContent = botMsg;
     messages.appendChild(botBubble);
     messages.scrollTop = messages.scrollHeight;
+    const followUp = cfg.prompts.followUpPrompt || 'Tell us more about your business or how we can help you';
+    await sendChatMessage(sessionId, cfg.webhook.route, cfg.webhook.url, followUp);
   });
 
   async function dispatch(text) {
