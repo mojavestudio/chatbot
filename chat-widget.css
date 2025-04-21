@@ -186,6 +186,7 @@
     border-top: 1px solid rgba(133, 79, 255, 0.1);
     display: flex;
     gap: 8px;
+    order: 2;
 }
 
 .chat-widget .chat-input textarea {
@@ -287,17 +288,14 @@
 
 
 .chat-widget .suggested-replies {
-    position: absolute;
-    bottom: 72px;
-    left: 0;
-    right: 0;
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
     padding: 12px 16px;
     background: var(--chat--color-background);
     border-top: 1px solid rgba(133, 79, 255, 0.1);
-    z-index: 1;
+    order: 1;
 }
 
 .chat-widget .reply-suggestion {
