@@ -1,8 +1,10 @@
 const toggleBtn = document.createElement('button');
 toggleBtn.className = `chat-toggle${cfg.style.position === 'left' ? ' position-left' : ''}`;
 
-const iconURL = cfg.branding.chatBubbleIcon?.trim();
-const useCustomIcon = iconURL && iconURL.length > 0;
+const iconURL = (cfg.branding && typeof cfg.branding.chatBubbleIcon === 'string')
+  ? cfg.branding.chatBubbleIcon.trim()
+  : '';
+const useCustomIcon = iconURL !== '';
 
 if (useCustomIcon) {
   toggleBtn.innerHTML = `

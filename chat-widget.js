@@ -89,8 +89,10 @@ function buildWidget(cfg) {
   const toggleBtn = document.createElement('button');
   toggleBtn.className = `chat-toggle${cfg.style.position === 'left' ? ' position-left' : ''}`;
   
-  const iconURL = (cfg.branding.chatBubbleIcon || '').trim();
-  const isValidImage = iconURL.length > 0;
+  const iconURL = (cfg.branding && typeof cfg.branding.chatBubbleIcon === 'string')
+    ? cfg.branding.chatBubbleIcon.trim()
+    : '';
+  const isValidImage = iconURL !== '';
 
   if (isValidImage) {
     toggleBtn.style.background = 'transparent';
