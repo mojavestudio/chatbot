@@ -82,14 +82,17 @@ function buildWidget(cfg) {
         <span>${cfg.branding.name}</span>
         <button class="close-button">×</button>
       </div>
-      <div class="chat-messages"></div>
-      <div class="suggested-replies"></div>
-      <div class="chat-input">
-        <textarea placeholder="Type your message here..." rows="1"></textarea>
-        <button type="submit">Send</button>
+      <div class="messages-container">
+        <div class="chat-messages"></div>
       </div>
-      <div class="chat-footer">
-        <a href="${cfg.branding.poweredBy.link}" target="_blank">${cfg.branding.poweredBy.text}</a>
+      <div class="input-container">
+        <div class="chat-input">
+          <textarea placeholder="Type your message here..." rows="1"></textarea>
+          <button type="submit">Send</button>
+        </div>
+        <div class="chat-footer">
+          <a href="${cfg.branding.poweredBy.link}" target="_blank">${cfg.branding.poweredBy.text}</a>
+        </div>
       </div>
     </div>
   `;
@@ -178,7 +181,8 @@ function wireEvents(container, toggleBtn, cfg) {
         };
         suggestionBox.appendChild(btn);
       });
-      chatArea.insertBefore(suggestionBox, chatArea.querySelector('.chat-input'));
+      const messagesContainer = chatArea.querySelector('.messages-container');
+      messagesContainer.appendChild(suggestionBox);
     }
 
     const botMsg = Array.isArray(data) ? data[0].output : data.output;
