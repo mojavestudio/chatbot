@@ -7,12 +7,13 @@ const defaultConfig = {
   branding: {
     logo: '',
     chatBubbleIcon: '',
+    chatbotIcon: '',
     name: '',
     welcomeText: '',
     responseTimeText: '',
     poweredBy: {
       text: 'Powered by Mojave Studio',
-      link: 'mojavestud.io'
+      link: 'https://mojavestud.io'
     }
   },
   style: {
@@ -89,9 +90,12 @@ function buildWidget(cfg) {
   const toggleBtn = document.createElement('button');
   toggleBtn.className = `chat-toggle${cfg.style.position === 'left' ? ' position-left' : ''}`;
   
-  if (cfg.branding.chatBubbleIcon) {
+  const chatbotIconURL = (cfg.branding.chatbotIcon || '').trim();
+  const useChatbotIcon = chatbotIconURL !== '';
+
+  if (useChatbotIcon) {
     toggleBtn.innerHTML = `
-      <img src="${cfg.branding.chatBubbleIcon}" alt="Chat"
+      <img src="${chatbotIconURL}" alt="Chat Icon"
            style="width:100%;height:100%;border-radius:50%;object-fit:cover;" />
     `;
   } else {
