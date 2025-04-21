@@ -83,7 +83,6 @@ function buildWidget(cfg) {
         <button class="close-button">×</button>
       </div>
       <div class="chat-messages"></div>
-      <div class="suggested-replies"></div>
       <div class="chat-input">
         <textarea placeholder="Type your message here..." rows="1"></textarea>
         <button type="submit">Send</button>
@@ -166,18 +165,19 @@ function wireEvents(container, toggleBtn, cfg) {
     }
 
     if (cfg.prompts.suggestedReplies.length > 0) {
-      const suggestionBox = container.querySelector('.suggested-replies');
-      suggestionBox.innerHTML = '';
+      const suggestionBox = document.createElement('div');
+      suggestionBox.className = 'suggested-replies';
       cfg.prompts.suggestedReplies.slice(0, 2).forEach(text => {
         const btn = document.createElement('button');
         btn.textContent = text;
         btn.className = 'reply-suggestion';
         btn.onclick = () => {
-          suggestionBox.innerHTML = '';
+          suggestionBox.remove();
           dispatch(text);
         };
         suggestionBox.appendChild(btn);
       });
+      chatArea.appendChild(suggestionBox);
     }
 
     const botMsg = Array.isArray(data) ? data[0].output : data.output;
