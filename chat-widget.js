@@ -167,7 +167,7 @@ function wireEvents(container, toggleBtn, cfg) {
     }
 
     if (cfg.prompts.suggestedReplies.length > 0) {
-      cfg.prompts.suggestedReplies.slice(0, 3).forEach(text => {
+      cfg.prompts.suggestedReplies.slice(0, 2).forEach(text => {
         const btn = document.createElement('button');
         btn.textContent = text;
         btn.className = 'reply-suggestion';
