@@ -147,7 +147,6 @@ function wireEvents(container, toggleBtn, cfg) {
   const input    = container.querySelector('textarea');
   const chatArea = container.querySelector('.chat-interface');
   const messages = container.querySelector('.chat-messages');
-  const suggestionBox = container.querySelector('.suggested-replies');
   const closeBtns = container.querySelectorAll('.close-button');
 
   newBtn.addEventListener('click', async () => {
@@ -167,19 +166,18 @@ function wireEvents(container, toggleBtn, cfg) {
     }
 
     if (cfg.prompts.suggestedReplies.length > 0) {
-      const suggestionBox = document.createElement('div');
-      suggestionBox.className = 'suggested-replies';
+      const suggestionBox = container.querySelector('.suggested-replies');
+      suggestionBox.innerHTML = '';
       cfg.prompts.suggestedReplies.slice(0, 2).forEach(text => {
         const btn = document.createElement('button');
         btn.textContent = text;
         btn.className = 'reply-suggestion';
         btn.onclick = () => {
-          suggestionBox.remove();
+          suggestionBox.innerHTML = '';
           dispatch(text);
         };
         suggestionBox.appendChild(btn);
       });
-      chatArea.appendChild(suggestionBox);
     }
 
     const botMsg = Array.isArray(data) ? data[0].output : data.output;
