@@ -98,6 +98,10 @@ function buildWidget(cfg) {
       <img src="${chatbotIconURL}" alt="Chat Icon"
            style="width:100%;height:100%;border-radius:50%;object-fit:cover;" />
     `;
+    toggleBtn.style.background = 'transparent';
+    toggleBtn.style.boxShadow = 'none';
+    toggleBtn.style.padding = '0';
+    toggleBtn.style.transition = 'none';
   } else {
     toggleBtn.innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -108,6 +112,10 @@ function buildWidget(cfg) {
                  -3.589 8-8 8z"/>
       </svg>
     `;
+    toggleBtn.style.background = `linear-gradient(135deg, ${cfg.style.primaryColor} 0%, ${cfg.style.secondaryColor} 100%)`;
+    toggleBtn.style.color = 'white';
+    toggleBtn.style.boxShadow = '0 4px 12px rgba(133, 79, 255, 0.3)';
+    toggleBtn.style.transition = 'transform 0.3s';
   }
 
   wrapper.append(container, toggleBtn);
