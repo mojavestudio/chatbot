@@ -22,6 +22,7 @@
     border: 1px solid rgba(133, 79, 255, 0.2);
     overflow: hidden;
     font-family: inherit;
+    position: relative;
 }
 
 .chat-widget .chat-container.position-left {
@@ -286,14 +287,16 @@
 
 
 .chat-widget .suggested-replies {
+    position: absolute;
+    bottom: 72px;
+    left: 0;
+    right: 0;
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
     padding: 12px 16px;
     background: var(--chat--color-background);
     border-top: 1px solid rgba(133, 79, 255, 0.1);
-    border-bottom: none;
-    position: relative;
     z-index: 1;
 }
 
