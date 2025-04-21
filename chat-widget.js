@@ -96,12 +96,16 @@ function buildWidget(cfg) {
   if (useChatbotIcon) {
     toggleBtn.innerHTML = `
       <img src="${chatbotIconURL}" alt="Chat Icon"
-           style="width:100%;height:100%;border-radius:50%;object-fit:cover;" />
+           style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;" />
     `;
-    toggleBtn.style.background = 'transparent';
+    toggleBtn.style.background = 'none';
     toggleBtn.style.boxShadow = 'none';
     toggleBtn.style.padding = '0';
     toggleBtn.style.transition = 'none';
+    toggleBtn.style.transform = 'none';
+    toggleBtn.style.scale = 'none';
+    toggleBtn.onmouseover = null;
+    toggleBtn.onmouseout = null;
   } else {
     toggleBtn.innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
