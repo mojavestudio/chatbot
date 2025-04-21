@@ -167,22 +167,23 @@ function wireEvents(container, toggleBtn, cfg) {
     }
 
     if (cfg.prompts.suggestedReplies.length > 0) {
+      const suggestionBox = document.createElement('div');
+      suggestionBox.className = 'suggested-replies';
       cfg.prompts.suggestedReplies.slice(0, 2).forEach(text => {
         const btn = document.createElement('button');
         btn.textContent = text;
         btn.className = 'reply-suggestion';
         btn.onclick = () => {
-          suggestionBox.innerHTML = '';
+          suggestionBox.remove();
           dispatch(text);
         };
         suggestionBox.appendChild(btn);
       });
+      chatArea.appendChild(suggestionBox);
     }
 
-    const botMsg = Array.isArray(data)
-      ? (data[0] && data[0].output) || ''
-      : (data.output || '');
-    // Only render the bot message if it’s a real response
+    const botMsg = Array.isArray(data) ? data[0].output : data.output;
+    // Only render the bot message if it's a real response
     if (botMsg && botMsg !== "There was an error connecting to the server.") {
       const botBubble = document.createElement('div');
       botBubble.className = 'chat-message bot';
