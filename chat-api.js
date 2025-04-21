@@ -32,7 +32,7 @@ export async function openConversation(sessionId, route, url) {
     return response.json();
   } catch (err) {
     console.error('❌ openConversation failed:', err);
-    return;
+    return { output: "" };
   }
 }
 
