@@ -183,11 +183,13 @@
 }
 
 .chat-widget .suggested-replies {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
     padding: 12px 16px;
     background: var(--chat--color-background);
+    border-bottom: 1px solid rgba(133, 79, 255, 0.1);
     position: relative;
     z-index: 1;
 }

@@ -166,17 +166,19 @@ function wireEvents(container, toggleBtn, cfg) {
     }
 
     if (cfg.prompts.suggestedReplies.length > 0) {
-      const suggestionBox = container.querySelector('.suggested-replies');
+      const suggestionBox = document.createElement('div');
+      suggestionBox.className = 'suggested-replies';
       cfg.prompts.suggestedReplies.slice(0, 2).forEach(text => {
         const btn = document.createElement('button');
         btn.textContent = text;
         btn.className = 'reply-suggestion';
         btn.onclick = () => {
-          suggestionBox.innerHTML = '';
+          suggestionBox.remove();
           dispatch(text);
         };
         suggestionBox.appendChild(btn);
       });
+      chatArea.insertBefore(suggestionBox, chatArea.querySelector('.chat-input'));
     }
 
     const botMsg = Array.isArray(data) ? data[0].output : data.output;
