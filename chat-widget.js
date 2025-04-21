@@ -71,7 +71,7 @@ function buildWidget(cfg) {
     </div>
     <div class="chat-interface">
       <div class="brand-header">
-        <img src="${cfg.branding.logo}" alt="${cfg.branding.name}" />
+        <img src="${cfg.branding.logo}" alt="${cfg.branding.name}">
         <span>${cfg.branding.name}</span>
         <button class="close-button">×</button>
       </div>
