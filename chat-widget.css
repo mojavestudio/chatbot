@@ -206,7 +206,6 @@
     gap: 8px;
     padding: 12px 16px;
     background: var(--chat--color-background);
-    border-top: 1px solid rgba(133, 79, 255, 0.1);
     z-index: 2;
 }
 
