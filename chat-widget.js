@@ -179,6 +179,11 @@ function wireEvents(container, toggleBtn, cfg) {
     }
 
     const botMsg = Array.isArray(data) ? data[0].output : data.output;
+    // Suppress the generic fallback error-string when the real request succeeds
+    if (!botMsg || botMsg === "There was an error connecting to the server.") {
+      console.warn("Suppressing placeholder error message:", botMsg);
+      return;
+    }
     const botBubble = document.createElement('div');
     botBubble.className = 'chat-message bot';
     botBubble.textContent = botMsg;
@@ -198,6 +203,11 @@ function wireEvents(container, toggleBtn, cfg) {
 
     const reply = await sendChatMessage(sessionId, cfg.webhook.route, cfg.webhook.url, text);
     const botMsg = Array.isArray(reply) ? reply[0].output : reply.output;
+    // suppress the generic fallback error-string when the real request succeeds
+    if (!botMsg || botMsg === "There was an error connecting to the server.") {
+      console.warn("Suppressing placeholder error message in dispatch:", botMsg);
+      return;
+    }
     const botBubble = document.createElement('div');
     botBubble.className = 'chat-message bot';
     botBubble.textContent = botMsg;
