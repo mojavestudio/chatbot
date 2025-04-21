@@ -22,7 +22,6 @@
     border: 1px solid rgba(133, 79, 255, 0.2);
     overflow: hidden;
     font-family: inherit;
-    position: relative;
 }
 
 .chat-widget .chat-container.position-left {
@@ -36,6 +35,7 @@
 }
 
 .chat-widget .brand-header {
+    flex-shrink: 0;
     padding: 16px;
     display: flex;
     align-items: center;
@@ -139,6 +139,7 @@
     display: none;
     flex-direction: column;
     height: 100%;
+    overflow: hidden;
 }
 
 .chat-widget .chat-interface.active {
@@ -152,7 +153,7 @@
     background: var(--chat--color-background);
     display: flex;
     flex-direction: column;
-    order: 1;
+    min-height: 0;
 }
 
 .chat-widget .chat-message {
@@ -182,14 +183,13 @@
 }
 
 .chat-widget .suggested-replies {
-    position: relative;
+    flex-shrink: 0;
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
     padding: 12px 16px;
     background: var(--chat--color-background);
     border-top: 1px solid rgba(133, 79, 255, 0.1);
-    order: 2;
 }
 
 .chat-widget .reply-suggestion {
@@ -209,12 +209,12 @@
 }
 
 .chat-widget .chat-input {
+    flex-shrink: 0;
     padding: 16px;
     background: var(--chat--color-background);
     border-top: 1px solid rgba(133, 79, 255, 0.1);
     display: flex;
     gap: 8px;
-    order: 3;
 }
 
 .chat-widget .chat-input textarea {
@@ -281,11 +281,11 @@
 }
 
 .chat-widget .chat-footer {
+    flex-shrink: 0;
     padding: 8px;
     text-align: center;
     background: var(--chat--color-background);
     border-top: 1px solid rgba(133, 79, 255, 0.1);
-    order: 4;
 }
 
 .chat-widget .chat-footer a {
