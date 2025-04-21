@@ -266,6 +266,20 @@
     font-family: inherit;
 }
 
+
 .chat-widget .chat-footer a:hover {
     opacity: 1;
+}
+
+/* Remove bubble styling when a custom icon is used */
+.chat-widget .chat-toggle.no-bubble-style {
+    background: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    transition: none !important;
+    transform: none !important;
+}
+
+.chat-widget .chat-toggle.no-bubble-style:hover {
+    transform: none !important;
 }

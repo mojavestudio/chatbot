@@ -94,6 +94,7 @@ function buildWidget(cfg) {
   const useChatbotIcon = chatbotIconURL !== '';
 
   if (useChatbotIcon) {
+    toggleBtn.classList.add('no-bubble-style');
     toggleBtn.innerHTML = `
       <img src="${chatbotIconURL}" alt="Chat Icon"
            style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;" />
